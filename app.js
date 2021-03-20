@@ -28,6 +28,12 @@ io.on('connection',socket => {
         socket.emit('message',messageFormat(botname,'Welcome to heyApp chatting platform.'));
 
         socket.broadcast.to(user.room).emit('message',messageFormat(botname,`${user.username} has joined the chat room.`));
+        
+        //Send users and rooms
+        io.to(user.room).emit('roomUsers',{
+            room:user.room,
+            users: getRoomUsers(user,room)
+        });
     }); 
     
     //listen for chatMessage
@@ -42,6 +48,12 @@ io.on('connection',socket => {
         const user = userLeave(socket.id);
         if(user){
             io.to(user.room).emit('message',messageFormat(botname,`${user.username} has left the chat.`));
+
+            //Send users and rooms
+            io.to(user.room).emit('roomUsers',{
+                room:user.room,
+                users: getRoomUsers(user,room)
+            });
         }
     });
 });
