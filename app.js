@@ -32,7 +32,7 @@ io.on('connection',socket => {
         //Send users and rooms
         io.to(user.room).emit('roomUsers',{
             room:user.room,
-            users: getRoomUsers(user,room)
+            users: getRoomUsers(user.room)
         });
     }); 
     
@@ -52,7 +52,7 @@ io.on('connection',socket => {
             //Send users and rooms
             io.to(user.room).emit('roomUsers',{
                 room:user.room,
-                users: getRoomUsers(user,room)
+                users: getRoomUsers(user.room)
             });
         }
     });
