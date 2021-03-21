@@ -13,7 +13,7 @@ const io = socketio(server);
 // Set static folder
 app.use(express.static(path.join(__dirname,'public')));
 
-const botname = 'heyApp Admin';
+const botname = 'Team heyApp';
 
 //Run when client connects
 //There are three ways of emiting msg
